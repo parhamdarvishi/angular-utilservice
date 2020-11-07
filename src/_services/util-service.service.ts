@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { isNumeric } from "rxjs/util/isNumeric";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class UtilServiceService {
-  constructor() {}
+  constructor(private router: Router) {}
 
   public IsValidJson(inputJson): boolean {
     try {
@@ -131,7 +132,6 @@ export class UtilServiceService {
   }
 
   public redirectToLink(uri: string) {
-    this.getOrderSummery();
     this.router
       .navigateByUrl("/", { skipLocationChange: true })
       .then(() => this.router.navigate([uri]));
