@@ -158,4 +158,9 @@ export class UtilServiceService {
     // shuffle(arr);
     // console.log(arr);
   }
+
+  public ReplaceAll(str: string, fromChar: string, toChar: string): string {
+    let result = str.split(fromChar).join(toChar);
+    return result;
+  }
 }
