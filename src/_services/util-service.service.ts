@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { isNumeric } from "rxjs/util/isNumeric";
 import { Router } from "@angular/router";
+import { HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class UtilServiceService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   public IsValidJson(inputJson): boolean {
     try {
@@ -162,5 +164,12 @@ export class UtilServiceService {
   public ReplaceAll(str: string, fromChar: string, toChar: string): string {
     let result = str.split(fromChar).join(toChar);
     return result;
+  }
+
+  public getGeolocation() {
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this.http.post<any>("http://ip-api.com/json", null, httpOptions);
   }
 }
