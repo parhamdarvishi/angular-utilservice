@@ -172,4 +172,28 @@ export class UtilServiceService {
     };
     return this.http.post<any>("http://ip-api.com/json", null, httpOptions);
   }
+
+  
+  public calcReadTimeFromInput($event) :number{
+    const wordsPerMinute = 200; // Average case.
+    let result :number = 0;
+    let textLength = $event.target.value.split(" ").length; // Split by words
+    if(textLength > 0){
+      let value = Math.ceil(textLength / wordsPerMinute);
+      result = value;
+    }
+    return result;
+  }
+
+  public calcReadTimeFromText(text:string) :number{
+    const wordsPerMinute = 200; // Average case.
+    let result :number = 0;
+    let textLength = text.split(" ").length; // Split by words
+    if(textLength > 0){
+      let value = Math.ceil(textLength / wordsPerMinute);
+      result = value;
+    }
+    return result;
+  }
+
 }
